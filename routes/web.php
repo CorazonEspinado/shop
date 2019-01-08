@@ -31,3 +31,4 @@ Route::resource('roles', 'RoleController');
 Route::resource('transactions', 'TransactionController');
 
 Route::resource('users', 'UserController');
+

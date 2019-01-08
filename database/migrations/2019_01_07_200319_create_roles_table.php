@@ -17,6 +17,7 @@ class CreateRolesTable extends Migration
             $table->increments('id');
             $table->integer('name');//Admin, anager, Webmaster, Customer
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
