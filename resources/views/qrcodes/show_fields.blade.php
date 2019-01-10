@@ -1,74 +1,80 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $qrcode->id !!}</p>
-</div>
+<div class="col-md-6">
+    <!-- User Id Field -->
+    @if ($qrcode->user_id==Auth::user()->id || Auth::user()->role_id <3 )
 
-<!-- User Id Field -->
-<div class="form-group">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{!! $qrcode->user_id !!}</p>
-</div>
-
+        <div class="form-group">
+            {!! Form::label('user_id', 'User Name:') !!}
+            <p>{!! $qrcode->user_id !!}</p>
+        </div>
+    @endif
+<hr>
 <!-- Website Field -->
-<div class="form-group">
-    {!! Form::label('website', 'Website:') !!}
-    <p>{!! $qrcode->website !!}</p>
-</div>
+    <div class="form-group">
+        {!! Form::label('website', 'Website:') !!}
+        <p>{!! $qrcode->website !!}</p>
+    </div>
+<hr>
+    <!-- Company Name Field -->
+    <div class="form-group">
+        {!! Form::label('company_name', 'Company Name:') !!}
+        <p>{!! $qrcode->company_name !!}</p>
+    </div>
 
-<!-- Company Name Field -->
-<div class="form-group">
-    {!! Form::label('company_name', 'Company Name:') !!}
-    <p>{!! $qrcode->company_name !!}</p>
-</div>
+    <!-- Product Name Field -->
+    <div class="form-group">
+        {!! Form::label('product_name', 'Product Name:') !!}
+        <p>{!! $qrcode->product_name !!}</p>
+    </div>
 
-<!-- Product Name Field -->
-<div class="form-group">
-    {!! Form::label('product_name', 'Product Name:') !!}
-    <p>{!! $qrcode->product_name !!}</p>
-</div>
+    <!-- Product Url Field -->
+    <div class="form-group">
+        {!! Form::label('product_url', 'Product Url:') !!}
+        <p>
+            <a href="{!! $qrcode->product_url !!}" target="_blank">
+                {!! $qrcode->product_url !!} </a>
+        </p>
+    </div>
 
-<!-- Product Url Field -->
-<div class="form-group">
-    {!! Form::label('product_url', 'Product Url:') !!}
-    <p>{!! $qrcode->product_url !!}</p>
-</div>
+    <!-- Callback Url Field -->
+    <div class="form-group">
+        {!! Form::label('callback_url', 'Callback Url:') !!}
+        <p>{!! $qrcode->callback_url !!}</p>
+    </div>
 
-<!-- Callback Url Field -->
-<div class="form-group">
-    {!! Form::label('callback_url', 'Callback Url:') !!}
-    <p>{!! $qrcode->callback_url !!}</p>
-</div>
+    <!-- Amount Field -->
+    <div class="form-group">
+        {!! Form::label('amount', 'Amount:') !!}
+        <p>{!! $qrcode->amount !!}</p>
+    </div>
 
-<!-- Qrcode Path Field -->
-<div class="form-group">
-    {!! Form::label('public/storage/qrcode_path', 'Qrcode Path:') !!}
-    <p>{!! $qrcode->qrcode_path !!}
+    <!-- Status Field -->
+    <div class="form-group">
+        {!! Form::label('status', 'Status:') !!}
+        <p>
+            @if ($qrcode->status)
+            {!! $status=data_get(config('qrcodes.status'),1)!!}
+            @else
+            {!! $status=data_get(config('qrcodes.status'), 0)!!}
+            @endif</td></p>
+    </div>
+
+    <!-- Created At Field -->
+    <div class="form-group">
+        {!! Form::label('created_at', 'Created At:') !!}
+        <p>{!! $qrcode->created_at !!}</p>
+    </div>
+
+    <!-- Updated At Field -->
+    <div class="form-group">
+        {!! Form::label('updated_at', 'Updated At:') !!}
+        <p>{!! $qrcode->updated_at !!}</p>
+    </div>
+    {{--TODO: needs refactoring: new view--}}
+</div>
+<div class="col-md-5 pull-right">
+    <!-- Qrcode Path Field -->
+    <div class="form-group">
         <img src="{{asset($qrcode->qrcode_path)  }}" alt="">
-    </p>
+        {{--TODO: needs refactoring: make code downloadable--}}
+    </div>
 </div>
-
-<!-- Amount Field -->
-<div class="form-group">
-    {!! Form::label('amount', 'Amount:') !!}
-    <p>{!! $qrcode->amount !!}</p>
-</div>
-
-<!-- Status Field -->
-<div class="form-group">
-    {!! Form::label('status', 'Status:') !!}
-    <p>{!! $qrcode->status !!}</p>
-</div>
-
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $qrcode->created_at !!}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $qrcode->updated_at !!}</p>
-</div>
-

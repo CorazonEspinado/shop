@@ -107,6 +107,7 @@ class QrcodeController extends AppBaseController
     public function edit($id)
     {
         $qrcode = $this->qrcodeRepository->findWithoutFail($id);
+//        TODO: need refactoring, overwrite code after editing with new one
 
         if (empty($qrcode)) {
             Flash::error('Qrcode not found');
@@ -139,7 +140,7 @@ class QrcodeController extends AppBaseController
 
         Flash::success('Qrcode updated successfully.');
 
-        return redirect(route('qrcodes.index'));
+        return redirect(route('qrcodes.show', ['qrcode'=>$qrcode]));
     }
 
     /**

@@ -14,16 +14,18 @@
     </thead>
     <tbody>
     {{--TODO: status needs refactoring--}}
-
+    @foreach($qrcodes as $qrcode)
 
         <tr>
 {{--TODO: needs recreate form--}}
             <td>{!! $qrcode->website !!}</td>
-            <td>{!! $qrcode->company_name !!}</td>
+            <td><a href="{!! route('qrcodes.show', [$qrcode->id]) !!}">
+                {!! $qrcode->company_name !!}</td>
+        </a>
             <td>{!! $qrcode->product_name !!}</td>
             <td>{!! $qrcode->qrcode_path !!}</td>
             <td>{!! $qrcode->amount !!}</td>
-            <td> @foreach($qrcodes as $qrcode)
+            <td>
                     @if ($qrcode->status)
                         {!! $status=data_get(config('qrcodes.status'),1)!!}
                     @else
@@ -41,6 +43,7 @@
                 {!! Form::close() !!}
             </td>
         </tr>
+        {{--TODO: needs refactoring clickable area--}}
     @endforeach
     </tbody>
 </table>

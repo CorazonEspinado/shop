@@ -19,6 +19,6 @@
 <!-- Updated At Field -->
 <div class="form-group">
     {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $role->updated_at !!}</p>
+    <p>{!! $role->updated_at->format('D d, M,Y') !!}</p>
 </div>
 
