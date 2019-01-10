@@ -25,6 +25,11 @@ class CreateQrcodeRequest extends FormRequest
      */
     public function rules()
     {
+        ([
+            'website' => 'required|max:255'
+
+        ]);
+
         return Qrcode::$rules;
     }
 }
