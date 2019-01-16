@@ -60,7 +60,7 @@ class Transaction extends Model
     use SoftDeletes;
 
     public $table = 'transactions';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -100,8 +100,27 @@ class Transaction extends Model
      * @var array
      */
     public static $rules = [
-        
-    ];
 
-    
+    ];
+/*
+ *  Transactions relationships to Qrcode and Users
+ */
+    public function qrcode()
+    {
+        return $this->belongsTo('App\Models\Qrcode');
+    }
+    /*
+ *  Transactions relationships to  Users
+ */
+    public function User()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+    /*
+ *  Transactions relationships to  Users
+ */
+    public function qrcode_owner()
+    {
+        return $this->belongsTo('App\Models\User', 'qrcode_owner_id');
+    }
 }

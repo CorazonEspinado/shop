@@ -114,6 +114,11 @@ class Qrcode extends Model
     public static $rules = [
         
     ];
-
+    /*
+ *  Qrcodes relationships to transactions
+ */
+public function transactions() {
+    return $this->hasMany('App\Models\Transaction');
+}
     
 }

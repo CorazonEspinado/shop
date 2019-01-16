@@ -48,7 +48,7 @@ class User extends Model
     use SoftDeletes;
 
     public $table = 'users';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -85,8 +85,22 @@ class User extends Model
      * @var array
      */
     public static $rules = [
-        
-    ];
 
-    
+    ];
+/*
+*  Users relationships to transactions
+*/
+    public function transactions()
+    {
+        return $this->hasMany('App\Models\Transaction');
+    }
+
+/*
+*  Users relationships to кщдуы
+*/
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role');
+    }
+
 }

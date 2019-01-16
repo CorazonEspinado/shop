@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends AppBaseController
 {
@@ -43,7 +45,7 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        return view('users.create');
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -73,6 +75,7 @@ class UserController extends AppBaseController
      */
     public function show($id)
     {
+
         $user = $this->userRepository->findWithoutFail($id);
 
         if (empty($user)) {
@@ -81,7 +84,7 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        return view('users.show')->with('user', $user);
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -93,6 +96,7 @@ class UserController extends AppBaseController
      */
     public function edit($id)
     {
+        $roles=Role::all();
         $user = $this->userRepository->findWithoutFail($id);
 
         if (empty($user)) {
@@ -101,7 +105,7 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        return view('users.edit')->with('user', $user);
+        return view('users.edit', compact('roles', 'user'));
     }
 
     /**
@@ -121,8 +125,11 @@ class UserController extends AppBaseController
 
             return redirect(route('users.index'));
         }
+        $input=$request->all();
+            $input['password']= Hash::make($input['password']);
 
-        $user = $this->userRepository->update($request->all(), $id);
+         $user = $this->userRepository->update($input, $id);
+
 
         Flash::success('User updated successfully.');
 

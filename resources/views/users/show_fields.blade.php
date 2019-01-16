@@ -1,8 +1,4 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $user->id !!}</p>
-</div>
+
 
 <!-- Name Field -->
 <div class="form-group">
@@ -13,7 +9,7 @@
 <!-- Role Id Field -->
 <div class="form-group">
     {!! Form::label('role_id', 'Role Id:') !!}
-    <p>{!! $user->role_id !!}</p>
+    <p>{!! $user->role['name'] !!}</p>
 </div>
 
 <!-- Email Field -->

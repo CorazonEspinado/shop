@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="Role",
+ *      definition="AccountHistory",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,18 +16,29 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="name",
- *          description="name",
+ *          property="account_id",
+ *          description="account_id",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="user_id",
+ *          description="user_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="message",
+ *          description="message",
+ *          type="string"
  *      )
  * )
  */
-class Role extends Model
+class AccountHistory extends Model
 {
     use SoftDeletes;
 
-    public $table = 'roles';
+    public $table = 'account_histories';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -37,7 +48,9 @@ class Role extends Model
 
 
     public $fillable = [
-        'name'
+        'account_id',
+        'user_id',
+        'message'
     ];
 
     /**
@@ -47,7 +60,9 @@ class Role extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string'
+        'account_id' => 'integer',
+        'user_id' => 'integer',
+        'message' => 'string'
     ];
 
     /**
@@ -58,9 +73,6 @@ class Role extends Model
     public static $rules = [
         
     ];
-    public function users() {
-        return $this->hasMany('App\Models\Users');
-    }
 
     
 }

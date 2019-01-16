@@ -1,19 +1,15 @@
 <!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $transaction->id !!}</p>
-</div>
-
+{{--TODO: needs refactoring, incorrect relationships--}}
 <!-- User Id Field -->
 <div class="form-group">
-    {!! Form::label('user_id', 'User Id:') !!}
-    <p>{!! $transaction->user_id !!}</p>
+    {!! Form::label('user_id', 'Customer Name:') !!}
+    <p>{!! $transaction->user['name'] !!}| {!! $transaction->user['email'] !!}</p>
 </div>
 
 <!-- Qrcode Id Field -->
 <div class="form-group">
-    {!! Form::label('qrcode_id', 'Qrcode Id:') !!}
-    <p>{!! $transaction->qrcode_id !!}</p>
+    {!! Form::label('qrcode_id', 'Product name:') !!}
+    <p><a href="/qrcodes/{!! $transaction->qrcode['id'] !!}">{!! $transaction->qrcode['product_name'] !!}</a></p>
 </div>
 
 <!-- Payment Method Field -->
@@ -24,8 +20,8 @@
 
 <!-- Qrcode Owner Id Field -->
 <div class="form-group">
-    {!! Form::label('qrcode_owner_id', 'Qrcode Owner Id:') !!}
-    <p>{!! $transaction->qrcode_owner_id !!}</p>
+    {!! Form::label('qrcode_owner_id', 'Qrcode Owner:') !!}
+    <p>{!! $transaction->qrcode_owner['name'] !!}</p>
 </div>
 
 <!-- Message Field -->
